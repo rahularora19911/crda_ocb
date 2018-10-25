@@ -746,6 +746,8 @@ static void print_reg_rule(const struct ieee80211_reg_rule *rule)
 		printf(", NO-IR");
 	if (rule->flags & RRF_AUTO_BW)
 		printf(", AUTO-BW");
+	if (rule->flags & RRF_OCB_ONLY)
+		printf(", OCB-ONLY");
 
 	printf("\n");
 }
@@ -796,6 +798,8 @@ static uint32_t reglib_parse_rule_flag(char *flag_s)
 		flags |= RRF_NO_IR;
 	if (strstr(flag_s, "AUTO-BW"))
 		flags |= RRF_AUTO_BW;
+	if (strstr(flag_s, "OCB-ONLY"))
+		flags |= RRF_OCB_ONLY;
 
 	return flags;
 }
