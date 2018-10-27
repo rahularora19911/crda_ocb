@@ -724,9 +724,9 @@ static void print_reg_rule(const struct ieee80211_reg_rule *rule)
 		printf("N/A)");
 
 	if (rule->dfs_cac_ms)
-		printf(", (%u)", rule->dfs_cac_ms);
-	else
-		printf(", (N/A)");
+               printf(", (%u)", rule->dfs_cac_ms);
+        else
+               printf(", (N/A)");
 
 	if (rule->flags & RRF_NO_OFDM)
 		printf(", NO-OFDM");
@@ -857,15 +857,13 @@ static int reglib_parse_rule(FILE *fp, struct ieee80211_reg_rule *reg_rule)
 	/* Next get optional arguments (flags ...) */
 	strsep(&line_p, ",");
 	if (line_p) {
-		/* Check DFS CAC time */
-		hits = sscanf(line_p, " (%u)", &dfs_cac_ms);
-		if (hits == 1)
-			reg_rule->dfs_cac_ms = dfs_cac_ms;
-
-		/* Check flags */
+               /* Check DFS CAC time */
+               hits = sscanf(line_p, " (%u)", &dfs_cac_ms);
+               if (hits == 1)
+                       reg_rule->dfs_cac_ms = dfs_cac_ms;
+               /* Check flags */
 		reg_rule->flags = reglib_parse_rule_flag(line_p);
 	}
-
 	return r;
 }
 
